@@ -1,0 +1,73 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: Disease-Information-Server
+  # Database Configuration
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://******:3306/pumpkin-template?serverTimezone=Asia/Shanghai
+    username: ******
+    password: ******
+  redis:
+    host: ******
+    port: 6379
+    password: ******
+    database: 2
+  # Date Configuration
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd hh:mm:ss
+  #file size Configuration
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+      file-size-threshold: 20MB
+  web:
+    resources:
+      static-locations: classpath:/static/
+  # thymeleaf
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+  # Mail Configuration
+  mail:
+    host: smtp.qq.com
+    protocol: smtp
+    default-encoding: UTF-8
+    test-connection: true
+    username: ******
+    password: ******
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+            required: true
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+application:
+  swagger:
+    isEnable: true
+  jwt:
+    secret: muzinan@!#@#@!
+    expire_time: 604800
+    request_header: Authorization

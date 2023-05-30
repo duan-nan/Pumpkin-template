@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pumpkin.disease.mapper.UserInfoMapper">
+
+    <update id="updateUserInfo">
+        update user_info
+        <set>
+            <if test="request.nickname != null">
+                nickname = #{request.nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="request.avatar != null">
+                avatar = #{request.avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="request.gender != null">
+                gender = #{request.gender,jdbcType=INTEGER},
+            </if>
+            <if test="request.email != null">
+                email = #{request.email,jdbcType=VARCHAR},
+            </if>
+            <if test="request.personIntro != null">
+                person_intro = #{request.personIntro,jdbcType=VARCHAR},
+            </if>
+            <if test="request.deviceType != null">
+                device_type = #{request.deviceType,jdbcType=INTEGER},
+            </if>
+            <if test="request.registeredSource != null">
+                registered_source = #{request.registeredSource,jdbcType=INTEGER},
+            </if>
+            <if test="request.ipAddress != null">
+                ip_address = #{request.ipAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="request.ipSource != null">
+                ip_source = #{request.ipSource,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

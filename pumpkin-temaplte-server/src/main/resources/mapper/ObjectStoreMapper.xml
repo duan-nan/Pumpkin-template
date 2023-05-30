@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pumpkin.disease.mapper.ObjectStoreMapper">
+
+
+    <select id="listObjectStore" resultType="com.pumpkin.disease.response.system.website.ObjectStoreResponse">
+        select
+        id,
+        object_store_name,
+        object_store_label,
+        domain_url,
+        endpoint,
+        bucket, is_perfect,
+        is_pass_test,
+        is_deleted
+        from object_store
+        where is_deleted = 0
+        <if test="request.keywords != null and request.keywords == ''">
+            and INSTR(object_store_name,#{request.keywords}) > 0
+        </if>
+        <if test="request.objectStoreLabel != null and request.objectStoreLabel == ''">
+            and INSTR(object_store_label,#{request.objectStoreLabel}) > 0
+        </if>
+        <if test="request.isPrefect != null">
+            and is_perfect = #{request.isPrefect}
+        </if>
+        <if test="request.isPassTest != null">
+            and is_pass_test = #{request.isPassTest}
+        </if>
+        order by id
+    </select>
+
+    <select id="getObjectStoreInfo"
+            resultType="com.pumpkin.disease.response.system.website.ObjectStoreResponse">
+        select *
+        from object_store
+        where is_deleted = 0
+          and id = #{objectStoreId}
+    </select>
+
+
+    <select id="checkIsProjectExisted" resultType="com.pumpkin.disease.entity.ObjectStore">
+        select id
+        from object_store
+        where is_deleted = 0
+          and object_store_label = #{objectStoreId}
+    </select>
+    <select id="listObjectStoreBasicInfo"
+            resultType="com.pumpkin.disease.response.system.website.ObjectStoreBasicInfoResponse">
+        select object_store_name  as name,
+               object_store_label as label,
+               !is_pass_test      as disabled
+        from object_store
+        where is_deleted = 0
+    </select>
+
+</mapper>

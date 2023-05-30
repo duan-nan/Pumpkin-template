@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pumpkin.disease.mapper.RoleMenuMapper">
+
+
+    <select id="listRoleMenu" resultType="java.lang.Long">
+        select menu_id
+        from role_menu rm
+                 left join menu m on m.id = rm.menu_id
+        where role_id = #{roleId}
+    </select>
+
+
+    <insert id="updatePermList" parameterType="com.pumpkin.disease.request.security.role.RolePermRequest">
+        insert into role_menu (role_id, menu_id) values
+        <foreach collection="request.menuIds" item="menuId" separator=",">
+            (#{request.roleId},#{menuId})
+        </foreach>
+    </insert>
+
+    <select id="listAllIds" resultType="java.lang.Long">
+        select id
+        from menu
+        where is_deleted = 0
+    </select>
+
+</mapper>

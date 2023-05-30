@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pumpkin后台管理系统</title>
+
+    <style>
+        .main-container {
+            width: 500px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 2px 5px 15px #797777;
+            padding-bottom: 20px;
+        }
+
+        .main-container .img-header {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            user-select: none;
+        }
+
+        .main-container .content-container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .main-container .content-container .title {
+            display: flex;
+            justify-content: center;
+            color: #5465d9;
+            font-size: 22px;
+            font-weight: bolder;
+            margin: 10px 0 20px 0;
+            line-height: 28px;
+        }
+
+
+        .main-container .content-container .content {
+            color: #545bd3;
+            font-size: 15px;
+        }
+
+        .main-container .content-container .content .important {
+            color: #323bc7;
+            font-weight: bolder;
+        }
+
+        .main-container .content-container .captcha-box {
+            color: white;
+            line-height: 50px;
+            width: 100%;
+            font-size: 20px;
+            height: 50px;
+            background: linear-gradient(to right, rgb(92, 163, 243) 0%, rgb(221, 116, 114) 50%, rgb(224, 171, 67) 100%);
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+            box-shadow: 1px 5px 15px gray;
+        }
+
+        .main-container .content-container .content-foot {
+            display: flex;
+            justify-content: left;
+            color: #636363;
+            line-height: 24px;
+            font-size: 14px;
+        }
+
+        .main-container .content-container .footer {
+            display: flex;
+            justify-content: right;
+            margin: 10px 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- Pic -->
+    <img class="img-header" src="https://www.cos.store.nanjustar.top/email/wallhaven-nmk579.jpg" alt="加载失败或图片被拦截...">
+    <!-- 内容区域 -->
+    <div class="content-container">
+        <div class="title">
+            <div>Pumpkin后台管理</div>
+            <div><span th:text="${emailMessage}"/></div>
+        </div>
+        <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;为了防止我们的服务被滥用，我们需要对您的电子邮件账号(<span
+                th:text="${receiver}"/>)进行验证，您只在页面输入以下字符串即可验证。
+        </p>
+        <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;验证码有效期为 <span class="important">15</span> 分钟，请尽快完成操作。</p>
+        <div class="captcha-box"><span th:text="${captcha}"/></div>
+        <p class="content-foot">
+            &nbsp;&nbsp;&nbsp;&nbsp;此邮件由系统自动发送，请勿直接回复，如果您没有注册过本站账号，请无视此邮件。</p>
+        <p class="content-foot">&nbsp;&nbsp;&nbsp;&nbsp;如有问题请通过站点上的联系方式联系我们。</p>
+        <div class="footer">
+            <span></span>
+            <span style="color: black;font-weight: bolder;font-size: 14px">Pumpkin模板后台管理系统</span>
+            <span style="color: #b4b2b2;font-size: 13px">&nbsp;-&nbsp;验证码</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

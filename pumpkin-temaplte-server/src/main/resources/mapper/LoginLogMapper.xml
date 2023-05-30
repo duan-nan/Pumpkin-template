@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pumpkin.disease.mapper.LoginLogMapper">
+
+
+    <select id="listLoginLog" resultType="com.pumpkin.disease.response.system.log.LoginLogResponse">
+        select *
+        from login_log
+        where is_deleted = 0
+        <if test="request.keywords != null and request.keywords != ''">
+            and INSTR(username,#{request.keywords}) > 0
+        </if>
+        <if test="request.ipSource != null and request.ipSource != ''">
+            and INSTR(ip_source,#{request.ipSource}) > 0
+        </if>
+        <if test="request.loginStatus != null and request.loginStatus != ''">
+            and login_status = #{request.loginStatus}
+        </if>
+        <if test="request.beginTime != null and request.endTime != null">
+            and gmt_create between #{request.beginTime} and #{request.endTime}
+        </if>
+        order by gmt_create DESC
+    </select>
+
+
+</mapper>

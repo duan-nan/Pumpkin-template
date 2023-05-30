@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pumpkin.disease.mapper.RoleMapper">
+
+    <select id="listPermissionByRoleId" resultType="java.lang.String">
+        select m.perm
+        from role
+                 left join role_menu rm on role.id = rm.role_id
+                 left join menu m on rm.menu_id = m.id
+        where role_id = #{roleId}
+    </select>
+
+    <select id="listRoleByPage" resultType="com.pumpkin.disease.response.security.role.RoleResponse">
+        select *, ifnull(user.count ,0) as userCount
+        from role
+        left join (select user_role_id, count(*) as count
+        from user_auth
+        where is_deleted = 0
+        group by user_role_id) user on role.id = user.user_role_id
+        where role.is_deleted = 0
+        <if test="request.keywords != null and request.keywords != ''">
+            and INSTR(role_name,#{request.keywords}) > 0
+        </if>
+        <if test="request.roleLabel != null and request.roleLabel != ''">
+            and INSTR(role_label,#{request.roleLabel}) > 0
+        </if>
+        <if test="request.isDisabled != null and request.isDisabled != ''">
+            and is_disabled = #{request.isDisabled}
+        </if>
+        <if test="request.beginTime != null and request.endTime != null">
+            and gmt_update between #{request.beginTime} and #{request.endTime}
+        </if>
+        order by order_num ASC
+    </select>
+
+    <select id="getRoleByRoleId" resultType="com.pumpkin.disease.response.security.role.RoleMenuResponse">
+        select id         as id,
+               role_name  as roleName,
+               role_label as roleLabel
+        from role
+        where is_deleted = 0
+          and id = #{roleId}
+    </select>
+
+    <select id="listBasicRole" resultType="com.pumpkin.disease.response.security.role.RoleBasicResponse">
+        select id,
+               role_name as roleName
+        from role
+        where is_deleted = 0
+          and role_label != 'super_admin'
+        order by order_num
+    </select>
+
+</mapper>

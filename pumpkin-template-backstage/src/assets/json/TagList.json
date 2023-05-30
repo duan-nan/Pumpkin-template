@@ -1,0 +1,26 @@
+[
+  {
+    "tagColor": "#2db7f5",
+    "tagName": "后台管理"
+  },
+  {
+    "tagColor": "#f50",
+    "tagName": "模板系统"
+  },
+  {
+    "tagColor": "#87d068",
+    "tagName": "SpringBoot 2.*"
+  },
+  {
+    "tagColor": "#108ee9",
+    "tagName": "Vue 2.*"
+  },
+  {
+    "tagColor": "#f7495b",
+    "tagName": "对象存储服务"
+  },
+  {
+    "tagColor": "#46d593",
+    "tagName": "Antd Vue组件库"
+  }
+]
