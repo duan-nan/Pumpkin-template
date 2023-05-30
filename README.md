@@ -132,5 +132,10 @@
 ## 🔔 支持作者
 请作者喝杯咖啡吧！
 
+> 微信
+> 
 <img src="./picture/wechat.png" alt="微信收款码" style="width:295px">
+
+> 支付宝
+> 
 <img src="./picture/alipay.png" alt="支付宝收款码" style="width:270px">
