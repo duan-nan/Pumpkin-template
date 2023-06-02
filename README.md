@@ -25,7 +25,7 @@
 
 ## 🎀 项目地址
 
-> 在线体验地址：~~[www.pumpkin.nanjustar.top](www.pumpkin.nanjustar.top)~~ 【暂未发布，敬请期待】
+> 在线体验地址：[http://www.pumpkin.nanjustar.top](http://www.pumpkin.nanjustar.top)
 
 > GitHub地址：[https://github.com/duan-nan/Pumpkin-template](https://github.com/duan-nan/Pumpkin-template)
 > 
