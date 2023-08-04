@@ -31,12 +31,6 @@
 > 
 > Gitee 地 址： [https://gitee.com/duan_nan/pumpkin-template](https://gitee.com/duan_nan/pumpkin-template)
 
-> 超级管理员：superAdmin 密码:123456789
-> 
-> 管理员：admin 密码:123456789
-> 
-> 用户：user 或 test 密码:123456
-
 
 ## 🎏 说明
 
